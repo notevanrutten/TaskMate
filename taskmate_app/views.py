@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
 
 from .forms import TaskForm
@@ -10,7 +10,7 @@ def index(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('todo')
+            return redirect('taskmate_app')
     form = TaskForm()
  
     page = {
@@ -18,7 +18,7 @@ def index(request):
         "list": item_list,
         "title": "TODO LIST",
     }
-    return render(request, 'taskmate/index.html', page)
+    return render(request, 'index.html', page)
 
 def remove(request, item_id):
     item = Task.objects.get(id=item_id)

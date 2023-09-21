@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskMate</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://kit.fontawesome.com/5be5848e0a.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    {% if messages %} {% for messages in messages %}
+    <strong>{{message}}</strong>
+    {% endfor %} {% endif %}
+
+    <header>
+      <h1><i>TaskMate</i></h1>
+      <hr />
+    </header>
+
+    <main>
+      <div>
+        {% for i in list %}
+        <div class="card">
+          <center><b>{{i.title}}</b></center>
+          <hr />
+          {{i.date}}
+          <hr />
+          {{i.details}}
+          <br />
+          <br />
+          <form action="/del/{{i.id}}" method="POST">
+            {% csrf_token %}
+            <button value="remove" type="submit"><i class="fa-solid fa-trash"></i></span></button>
+          </form>
+        </div>
+        {% endfor %}
+      </div>
+      <form method="POST">
+        {% csrf_token %} {{forms.as_p}}
+        <input type="submit" value="Submit" />
+      </form>
+    </main>
+  </body>
+</html>
