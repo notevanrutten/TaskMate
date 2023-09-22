@@ -17,9 +17,10 @@
 
     <header>
       <center>
-        <h1><i>TaskMate</i></h1>
+        <h1>TaskMate</h1>
+        <p>Welcome to TaskMate, feel free to try it out!</p>
       </center>
-      <hr />
+      <br />
     </header>
 
     <main>
@@ -42,6 +43,7 @@
       </div>
       <div class="add-task">
         <form method="POST">
+          <h2>Add Task</h2>
           {% csrf_token %} {{forms.as_p}}
           <input type="submit" value="Submit" />
         </form>
